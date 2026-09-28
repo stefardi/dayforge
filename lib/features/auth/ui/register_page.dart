@@ -4,7 +4,7 @@ import 'package:dayforge/features/auth/providers/auth_provider.dart';
 import 'package:go_router/go_router.dart';
 
 class RegisterPage extends ConsumerWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

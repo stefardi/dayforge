@@ -30,7 +30,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       return authAsync.when(
         data: (auth) => auth.session == null && state.matchedLocation != '/register' ? '/login' : null,
         loading: () => null,
-        error: (_, __) => '/login',
+        error: (error, stack) => '/login',
       );
     },
     refreshListenable: null,
