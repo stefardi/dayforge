@@ -32,7 +32,7 @@ class AuthService {
         password: password,
       );
       return response;
-    } on AuthException catch (e) {
+    } on AuthException {
       // Propagate Supabase auth errors
       rethrow;
     }
@@ -49,7 +49,7 @@ class AuthService {
         password: password,
       );
       return response;
-    } on AuthException catch (e) {
+    } on AuthException {
       // Propagate Supabase auth errors
       rethrow;
     }
