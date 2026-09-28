@@ -58,7 +58,8 @@ class DashboardPage extends ConsumerWidget {
                             titleCtrl.clear();
                           } finally {
                             if (context.mounted) {
-                              ref.read(_addLoadingProvider.notifier).state = false;
+                              ref.read(_addLoadingProvider.notifier).state =
+                                  false;
                             }
                           }
                         },
@@ -66,7 +67,10 @@ class DashboardPage extends ConsumerWidget {
                       ? const SizedBox(
                           width: 16,
                           height: 16,
-                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
                         )
                       : const Icon(Icons.add),
                 ),
@@ -78,11 +82,16 @@ class DashboardPage extends ConsumerWidget {
           Expanded(
             child: tasksAsync.when(
               data: (tasks) => tasks.isEmpty
-                  ? const Center(child: Text('Tidak ada entri. Tambahkan di atas!'))
+                  ? const Center(
+                      child: Text('Tidak ada entri. Tambahkan di atas!'),
+                    )
                   : ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                       itemCount: tasks.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
+                      separatorBuilder: (_, _) => const SizedBox(height: 8),
                       itemBuilder: (context, idx) {
                         final task = tasks[idx];
                         return Dismissible(
@@ -92,10 +101,15 @@ class DashboardPage extends ConsumerWidget {
                             color: Colors.redAccent,
                             alignment: Alignment.centerRight,
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: const Icon(Icons.delete, color: Colors.white),
+                            child: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
                           ),
                           onDismissed: (_) async {
-                            await ref.read(taskProvider.notifier).remove(task.id);
+                            await ref
+                                .read(taskProvider.notifier)
+                                .remove(task.id);
                           },
                           child: Card(
                             elevation: 2,
@@ -103,11 +117,22 @@ class DashboardPage extends ConsumerWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: ListTile(
-                              leading: const Icon(Icons.note_outlined, color: Colors.deepPurple),
-                              title: Text(task.title, style: const TextStyle(fontWeight: FontWeight.w600)),
+                              leading: const Icon(
+                                Icons.note_outlined,
+                                color: Colors.deepPurple,
+                              ),
+                              title: Text(
+                                task.title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                               subtitle: Text(
                                 'Ditambahkan pada ${task.createdAt.hour.toString().padLeft(2, '0')}:${task.createdAt.minute.toString().padLeft(2, '0')}',
-                                style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                ),
                               ),
                               trailing: const Icon(Icons.chevron_right),
                               onTap: () {
