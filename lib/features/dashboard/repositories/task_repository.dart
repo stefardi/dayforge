@@ -18,7 +18,8 @@ class TaskRepository {
     final res = await _client
         .from(_table)
         .select()
-        .order('created_at', ascending: false);
+        .order('created_at', ascending: false)
+        .execute();
     if (res.error != null) throw res.error!;
 
     // Mapping ke model Task

@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:riverpod/riverpod.dart'; // unused
 import 'package:dayforge/features/dashboard/models/task.dart';
 import 'package:dayforge/features/dashboard/repositories/task_repository.dart';
 
-final taskRepositoryProvider = Provider((ref) => TaskRepository());
+final taskRepositoryProvider = Provider<TaskRepository>((ref) => TaskRepository());
 
 // StateNotifier yang memuat data dari Supabase
 class TaskNotifier extends StateNotifier<AsyncValue<List<Task>>> {
