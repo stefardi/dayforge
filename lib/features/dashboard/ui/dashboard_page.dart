@@ -52,14 +52,13 @@ class DashboardPage extends ConsumerWidget {
                       : () async {
                           final txt = titleCtrl.text.trim();
                           if (txt.isEmpty) return;
-                          ref.read(_addLoadingProvider.notifier).state = true;
+                          ref.read(_addLoadingProvider.notifier).set(true);
                           try {
                             await ref.read(taskProvider.notifier).add(txt);
                             titleCtrl.clear();
                           } finally {
                             if (context.mounted) {
-                              ref.read(_addLoadingProvider.notifier).state =
-                                  false;
+                              ref.read(_addLoadingProvider.notifier).set(false);
                             }
                           }
                         },
@@ -153,5 +152,13 @@ class DashboardPage extends ConsumerWidget {
   }
 }
 
-// Simple loading state for the add‑task button
-final _addLoadingProvider = StateProvider<bool>((ref) => false);
+// Simple loading state notifier for the add-task button
+class _AddLoadingNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+  void set(bool value) => state = value;
+}
+
+final _addLoadingProvider = NotifierProvider<_AddLoadingNotifier, bool>(
+  _AddLoadingNotifier.new,
+);

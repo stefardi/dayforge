@@ -10,7 +10,7 @@ void main() async {
   // Initialize Supabase with environment variables (or fallback placeholders)
   await Supabase.initialize(
     url: SupabaseConfig.url,
-    anonKey: SupabaseConfig.anonKey,
+    publishableKey: SupabaseConfig.anonKey,
   );
 
   runApp(

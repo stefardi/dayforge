@@ -50,7 +50,7 @@ class RegisterPage extends ConsumerWidget {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Passwords do not match')));
                       return;
                     }
-                    ref.read(_registerLoadingProvider.notifier).state = true;
+                    ref.read(_registerLoadingProvider.notifier).set(true);
                     try {
                       await ref.read(authServiceProvider).signUpWithEmailPassword(
                         emailController.text.trim(),
@@ -61,7 +61,7 @@ class RegisterPage extends ConsumerWidget {
                       }
                     } finally {
                       if (context.mounted) {
-                        ref.read(_registerLoadingProvider.notifier).state = false;
+                        ref.read(_registerLoadingProvider.notifier).set(false);
                       }
                     }
                   },
@@ -83,4 +83,12 @@ class RegisterPage extends ConsumerWidget {
   }
 }
 
-final _registerLoadingProvider = StateProvider<bool>((ref) => false);
+class _RegisterLoadingNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+  void set(bool value) => state = value;
+}
+
+final _registerLoadingProvider = NotifierProvider<_RegisterLoadingNotifier, bool>(
+  _RegisterLoadingNotifier.new,
+);

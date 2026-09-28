@@ -42,7 +42,7 @@ class LoginPage extends ConsumerWidget {
                 height: 48,
                 child: ElevatedButton(
                   onPressed: isLoading ? null : () async {
-                    ref.read(_loginLoadingProvider.notifier).state = true;
+                    ref.read(_loginLoadingProvider.notifier).set(true);
                     try {
                       await ref.read(authServiceProvider).signInWithEmailPassword(
                         emailController.text.trim(),
@@ -54,7 +54,7 @@ class LoginPage extends ConsumerWidget {
                       }
                     } finally {
                       if (context.mounted) {
-                        ref.read(_loginLoadingProvider.notifier).state = false;
+                        ref.read(_loginLoadingProvider.notifier).set(false);
                       }
                     }
                   },
@@ -76,5 +76,13 @@ class LoginPage extends ConsumerWidget {
   }
 }
 
-// Simple loading state provider for the login button
-final _loginLoadingProvider = StateProvider<bool>((ref) => false);
+// Simple loading state notifier for the login button
+class _LoginLoadingNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+  void set(bool value) => state = value;
+}
+
+final _loginLoadingProvider = NotifierProvider<_LoginLoadingNotifier, bool>(
+  _LoginLoadingNotifier.new,
+);

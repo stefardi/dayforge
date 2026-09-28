@@ -6,11 +6,15 @@ import 'package:dayforge/features/dashboard/repositories/task_repository.dart';
 
 final taskRepositoryProvider = Provider<TaskRepository>((ref) => TaskRepository());
 
-// StateNotifier yang memuat data dari Supabase
-class TaskNotifier extends StateNotifier<AsyncValue<List<Task>>> {
-  final TaskRepository _repo;
-  TaskNotifier(this._repo) : super(const AsyncLoading()) {
+// Notifier yang memuat data dari Supabase
+class TaskNotifier extends Notifier<AsyncValue<List<Task>>> {
+  late final TaskRepository _repo;
+
+  @override
+  AsyncValue<List<Task>> build() {
+    _repo = ref.read(taskRepositoryProvider);
     _load(); // muat data saat pertama kali
+    return const AsyncLoading();
   }
 
   Future<void> _load() async {
@@ -37,6 +41,6 @@ class TaskNotifier extends StateNotifier<AsyncValue<List<Task>>> {
 
 // Provider global
 final taskProvider =
-    StateNotifierProvider<TaskNotifier, AsyncValue<List<Task>>>(
-      (ref) => TaskNotifier(ref.read(taskRepositoryProvider)),
+    NotifierProvider<TaskNotifier, AsyncValue<List<Task>>>(
+      TaskNotifier.new,
     );

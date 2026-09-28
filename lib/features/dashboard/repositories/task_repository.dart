@@ -18,12 +18,10 @@ class TaskRepository {
     final res = await _client
         .from(_table)
         .select()
-        .order('created_at', ascending: false)
-        .execute();
-    if (res.error != null) throw res.error!;
+        .order('created_at', ascending: false);
 
     // Mapping ke model Task
-    return (res.data as List).map((json) {
+    return (res as List).map((json) {
       return Task(
         id: json['id'].toString(),
         title: json['title'] as String,
