@@ -52,6 +52,12 @@ class LoginPage extends ConsumerWidget {
                       if (context.mounted) {
                         context.go('/dashboard');
                       }
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(e.toString())),
+                        );
+                      }
                     } finally {
                       if (context.mounted) {
                         ref.read(_loginLoadingProvider.notifier).set(false);

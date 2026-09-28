@@ -25,14 +25,26 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
     ],
     redirect: (context, state) {
-      // Redirect unauthenticated users to login (except when on register page)
-      final authAsync = ref.watch(authStateProvider);
-      return authAsync.when(
-        data: (auth) => auth.session == null && state.matchedLocation != '/register' ? '/login' : null,
-        loading: () => null,
-        error: (error, stack) => '/login',
-      );
+      final authAsync = ref.read(authStateProvider);
+      final isLoggedIn = authAsync.whenOrNull(
+        data: (auth) => auth.session != null,
+      ) ?? false;
+
+      final isOnAuthPage = state.matchedLocation == '/login' ||
+          state.matchedLocation == '/register';
+
+      // If logged in and on an auth page, redirect to dashboard
+      if (isLoggedIn && isOnAuthPage) {
+        return '/dashboard';
+      }
+
+      // If not logged in and trying to access a protected page, redirect to login
+      if (!isLoggedIn && !isOnAuthPage) {
+        return '/login';
+      }
+
+      // No redirect needed
+      return null;
     },
-    refreshListenable: null,
   );
 });
