@@ -31,6 +31,11 @@ class TaskNotifier extends Notifier<AsyncValue<List<Task>>> {
     await _load(); // refresh setelah insert
   }
 
+  Future<void> update(String id, {required String title, required String content}) async {
+    await _repo.updateTask(id, title: title, content: content);
+    await _load(); // refresh setelah update
+  }
+
   Future<void> remove(String id) async {
     await _repo.deleteTask(id);
     await _load(); // refresh setelah delete
@@ -44,3 +49,4 @@ final taskProvider =
     NotifierProvider<TaskNotifier, AsyncValue<List<Task>>>(
       TaskNotifier.new,
     );
+

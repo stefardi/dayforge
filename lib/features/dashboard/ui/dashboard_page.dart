@@ -153,7 +153,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                               ),
                               trailing: const Icon(Icons.chevron_right),
                               onTap: () {
-                                // Placeholder untuk detail view
+                                context.push('/task/${task.id}', extra: task);
                               },
                             ),
                           ),

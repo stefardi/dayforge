@@ -6,6 +6,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:dayforge/features/auth/ui/login_page.dart';
 import 'package:dayforge/features/auth/ui/register_page.dart';
 import 'package:dayforge/features/dashboard/ui/dashboard_page.dart';
+import 'package:dayforge/features/dashboard/ui/task_detail_page.dart';
+import 'package:dayforge/features/dashboard/models/task.dart';
 
 
 /// A [ChangeNotifier] that listens to Supabase auth state changes
@@ -51,6 +53,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/dashboard',
         builder: (context, state) => const DashboardPage(),
+      ),
+      GoRoute(
+        path: '/task/:id',
+        builder: (context, state) {
+          final task = state.extra as Task;
+          return TaskDetailPage(task: task);
+        },
       ),
     ],
     redirect: (context, state) {

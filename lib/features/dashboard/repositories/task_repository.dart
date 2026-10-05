@@ -11,6 +11,7 @@ class TaskRepository {
   Future<void> createTask(String title) async {
     await _client.from(_table).insert({
       'title': title,
+      'content': '',
       'user_id': _userId,
       'created_at': DateTime.now().toIso8601String(),
     });
@@ -24,14 +25,26 @@ class TaskRepository {
         .eq('user_id', _userId)
         .order('created_at', ascending: false);
 
-    // Mapping ke model Task
-    return (res as List).map((json) {
-      return Task(
-        id: json['id'].toString(),
-        title: json['title'] as String,
-        createdAt: DateTime.parse(json['created_at'] as String),
-      );
-    }).toList();
+    return (res as List).map((json) => Task.fromJson(json)).toList();
+  }
+
+  // Mengambil satu task berdasar id
+  Future<Task> fetchTask(String id) async {
+    final res = await _client
+        .from(_table)
+        .select()
+        .eq('id', id)
+        .eq('user_id', _userId)
+        .single();
+    return Task.fromJson(res);
+  }
+
+  // Memperbarui judul dan isi task
+  Future<void> updateTask(String id, {required String title, required String content}) async {
+    await _client.from(_table).update({
+      'title': title,
+      'content': content,
+    }).eq('id', id).eq('user_id', _userId);
   }
 
   // Menghapus task berdasar id
