@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-
 import 'package:dayforge/features/auth/providers/auth_provider.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:riverpod/riverpod.dart'; // removed unused
 
-class LoginPage extends ConsumerWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends ConsumerState<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final isLoading = ref.watch(_loginLoadingProvider);
 
     return Scaffold(
@@ -26,13 +36,13 @@ class LoginPage extends ConsumerWidget {
               const Text('Welcome Back', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
               const SizedBox(height: 32),
               TextField(
-                controller: emailController,
+                controller: _emailController,
                 decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
               TextField(
-                controller: passwordController,
+                controller: _passwordController,
                 decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
                 obscureText: true,
               ),
@@ -45,21 +55,19 @@ class LoginPage extends ConsumerWidget {
                     ref.read(_loginLoadingProvider.notifier).set(true);
                     try {
                       await ref.read(authServiceProvider).signInWithEmailPassword(
-                        emailController.text.trim(),
-                        passwordController.text,
+                        _emailController.text.trim(),
+                        _passwordController.text,
                       );
-                      // Navigate to dashboard after successful login
-                      if (context.mounted) {
-                        context.go('/dashboard');
-                      }
+                      // GoRouter redirect will automatically navigate to /dashboard
+                      // via refreshListenable when auth state changes
                     } catch (e) {
-                      if (context.mounted) {
+                      if (mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(e.toString())),
                         );
                       }
                     } finally {
-                      if (context.mounted) {
+                      if (mounted) {
                         ref.read(_loginLoadingProvider.notifier).set(false);
                       }
                     }
