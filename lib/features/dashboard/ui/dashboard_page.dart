@@ -4,13 +4,25 @@ import 'package:go_router/go_router.dart';
 import 'package:dayforge/features/dashboard/providers/task_provider.dart';
 import 'package:dayforge/features/auth/providers/auth_provider.dart';
 
-class DashboardPage extends ConsumerWidget {
+class DashboardPage extends ConsumerStatefulWidget {
   const DashboardPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends ConsumerState<DashboardPage> {
+  final _titleCtrl = TextEditingController();
+
+  @override
+  void dispose() {
+    _titleCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final tasksAsync = ref.watch(taskProvider);
-    final titleCtrl = TextEditingController();
     final isAdding = ref.watch(_addLoadingProvider);
 
     return Scaffold(
@@ -38,7 +50,7 @@ class DashboardPage extends ConsumerWidget {
               children: [
                 Expanded(
                   child: TextField(
-                    controller: titleCtrl,
+                    controller: _titleCtrl,
                     decoration: const InputDecoration(
                       hintText: 'Tambah entri...',
                       border: OutlineInputBorder(),
@@ -50,14 +62,20 @@ class DashboardPage extends ConsumerWidget {
                   onPressed: isAdding
                       ? null
                       : () async {
-                          final txt = titleCtrl.text.trim();
+                          final txt = _titleCtrl.text.trim();
                           if (txt.isEmpty) return;
                           ref.read(_addLoadingProvider.notifier).set(true);
                           try {
                             await ref.read(taskProvider.notifier).add(txt);
-                            titleCtrl.clear();
+                            _titleCtrl.clear();
+                          } catch (e) {
+                            if (mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Gagal menambah entri: $e')),
+                              );
+                            }
                           } finally {
-                            if (context.mounted) {
+                            if (mounted) {
                               ref.read(_addLoadingProvider.notifier).set(false);
                             }
                           }
@@ -90,7 +108,7 @@ class DashboardPage extends ConsumerWidget {
                         vertical: 8,
                       ),
                       itemCount: tasks.length,
-                      separatorBuilder: (_, _) => const SizedBox(height: 8),
+                      separatorBuilder: (_, __) => const SizedBox(height: 8),
                       itemBuilder: (context, idx) {
                         final task = tasks[idx];
                         return Dismissible(
@@ -151,6 +169,7 @@ class DashboardPage extends ConsumerWidget {
     );
   }
 }
+
 
 // Simple loading state notifier for the add-task button
 class _AddLoadingNotifier extends Notifier<bool> {
