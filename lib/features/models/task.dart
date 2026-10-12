@@ -1,4 +1,6 @@
 // lib/features/dashboard/models/task.dart
+// NOTE: File model utama ada di lib/features/dashboard/models/task.dart
+// File ini deprecated, gunakan model dari dashboard/models/task.dart
 class Task {
   final String id;
   final String title;

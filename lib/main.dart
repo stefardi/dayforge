@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:dayforge/config/supabase_config.dart';
 import 'package:dayforge/core/router/app_router.dart';
+import 'package:dayforge/core/services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +13,9 @@ void main() async {
     url: SupabaseConfig.url,
     publishableKey: SupabaseConfig.anonKey,
   );
+
+  // Inisialisasi notification service untuk reminder
+  await NotificationService.instance.init();
 
   runApp(
     const ProviderScope(

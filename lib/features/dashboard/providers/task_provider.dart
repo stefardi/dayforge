@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 import 'package:dayforge/features/dashboard/models/task.dart';
 import 'package:dayforge/features/dashboard/repositories/task_repository.dart';
 
@@ -36,6 +35,16 @@ class TaskNotifier extends Notifier<AsyncValue<List<Task>>> {
     await _load(); // refresh setelah update
   }
 
+  Future<void> updateDate(String id, {required DateTime createdAt}) async {
+    await _repo.updateTaskDate(id, createdAt: createdAt);
+    await _load(); // refresh setelah update tanggal
+  }
+
+  Future<void> updateReminder(String id, {DateTime? reminderAt}) async {
+    await _repo.updateTaskReminder(id, reminderAt: reminderAt);
+    await _load(); // refresh setelah update reminder
+  }
+
   Future<void> remove(String id) async {
     await _repo.deleteTask(id);
     await _load(); // refresh setelah delete
@@ -49,4 +58,3 @@ final taskProvider =
     NotifierProvider<TaskNotifier, AsyncValue<List<Task>>>(
       TaskNotifier.new,
     );
-

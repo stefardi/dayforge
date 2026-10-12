@@ -40,10 +40,28 @@ class TaskRepository {
   }
 
   // Memperbarui judul dan isi task
-  Future<void> updateTask(String id, {required String title, required String content}) async {
+  Future<void> updateTask(
+    String id, {
+    required String title,
+    required String content,
+  }) async {
     await _client.from(_table).update({
       'title': title,
       'content': content,
+    }).eq('id', id).eq('user_id', _userId);
+  }
+
+  // Memperbarui tanggal catatan
+  Future<void> updateTaskDate(String id, {required DateTime createdAt}) async {
+    await _client.from(_table).update({
+      'created_at': createdAt.toIso8601String(),
+    }).eq('id', id).eq('user_id', _userId);
+  }
+
+  // Memperbarui reminder
+  Future<void> updateTaskReminder(String id, {DateTime? reminderAt}) async {
+    await _client.from(_table).update({
+      'reminder_at': reminderAt?.toIso8601String(),
     }).eq('id', id).eq('user_id', _userId);
   }
 
@@ -52,4 +70,3 @@ class TaskRepository {
     await _client.from(_table).delete().eq('id', id);
   }
 }
-
