@@ -1,0 +1,59 @@
+appId: com.example.dayforge
+---
+# Complete End-to-End User Journey Flow
+- launchApp:
+    clearState: true
+
+# 1. Navigation Check: Login -> Register -> Login
+- assertVisible: "Welcome Back"
+- tapOn: "Don't have an account? Register"
+- assertVisible: "Create Account"
+- tapOn: "Already have an account? Login"
+- assertVisible: "Welcome Back"
+
+# 2. Login
+- runFlow:
+    file: subflows/login_subflow.yaml
+    env:
+      EMAIL: ${EMAIL:-"test@example.com"}
+      PASSWORD: ${PASSWORD:-"password123"}
+
+- assertVisible: "DayForge Dashboard"
+
+# 3. Add Task
+- tapOn: "Tambah entri..."
+- inputText: "Maestro E2E Task"
+- hideKeyboard
+- tapOn: "Tambah"
+- assertVisible: "Maestro E2E Task"
+
+# 4. View and Edit Task Details
+- tapOn: "Maestro E2E Task"
+- assertVisible: "Detail Entri"
+
+- tapOn: "Tulis isi catatan di sini..."
+- inputText: "Catatan e2e verifikasi Maestro."
+- hideKeyboard
+
+- tapOn: "Simpan"
+- assertVisible:
+    text: "Entri berhasil disimpan"
+    optional: true
+
+- tapOn: "Kembali"
+- assertVisible: "DayForge Dashboard"
+
+# 5. Delete Task
+- swipe:
+    direction: LEFT
+    element:
+      text: "Maestro E2E Task"
+
+- assertNotVisible: "Maestro E2E Task"
+
+# 6. Logout
+- runFlow:
+    file: subflows/logout_subflow.yaml
+
+- assertVisible: "Welcome Back"
+

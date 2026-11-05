@@ -1,0 +1,28 @@
+appId: com.example.dayforge
+---
+# Flow to test deleting an entry via swipe dismiss
+- launchApp
+
+- runFlow:
+    when:
+      visible: "Welcome Back"
+    file: subflows/login_subflow.yaml
+
+- assertVisible: "DayForge Dashboard"
+
+# 1. Add a specific task to delete
+- tapOn: "Tambah entri..."
+- inputText: "Task To Delete Maestro"
+- hideKeyboard
+- tapOn: "Tambah"
+- assertVisible: "Task To Delete Maestro"
+
+# 2. Swipe left to delete the task (Dismissible direction: endToStart)
+- swipe:
+    direction: LEFT
+    element:
+      text: "Task To Delete Maestro"
+
+# 3. Assert the task has been removed
+- assertNotVisible: "Task To Delete Maestro"
+

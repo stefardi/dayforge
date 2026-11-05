@@ -1,0 +1,17 @@
+appId: com.example.dayforge
+---
+# Reusable subflow to log in with provided credentials or defaults
+- tapOn:
+    text: "Email"
+    optional: true
+- inputText: ${EMAIL:-"test@example.com"}
+- tapOn:
+    text: "Password"
+    optional: true
+- inputText: ${PASSWORD:-"password123"}
+- hideKeyboard
+- tapOn: "Login"
+- assertVisible:
+    text: "DayForge Dashboard"
+    timeout: 10000
+

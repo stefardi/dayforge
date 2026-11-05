@@ -1,0 +1,46 @@
+appId: com.example.dayforge
+---
+# Flow to test task creation, viewing details, and editing
+- launchApp
+
+# Authenticate if currently on the login screen
+- runFlow:
+    when:
+      visible: "Welcome Back"
+    file: subflows/login_subflow.yaml
+
+- assertVisible: "DayForge Dashboard"
+
+# 1. Add a new task entry
+- tapOn: "Tambah entri..."
+- inputText: "Catatan Baru Maestro"
+- hideKeyboard
+- tapOn: "Tambah"
+
+# 2. Verify the task appears in the list
+- assertVisible: "Catatan Baru Maestro"
+
+# 3. Tap on the task to open Task Detail
+- tapOn: "Catatan Baru Maestro"
+- assertVisible: "Detail Entri"
+
+# 4. Modify Title and Content
+- tapOn: "Catatan Baru Maestro"
+- eraseText: 30
+- inputText: "Catatan Diedit Maestro"
+
+- tapOn: "Tulis isi catatan di sini..."
+- inputText: "Isi detail catatan yang diotomasi oleh Maestro."
+- hideKeyboard
+
+# 5. Save changes
+- tapOn: "Simpan"
+- assertVisible:
+    text: "Entri berhasil disimpan"
+    optional: true
+
+# 6. Navigate back to dashboard and verify updated title
+- tapOn: "Kembali"
+- assertVisible: "DayForge Dashboard"
+- assertVisible: "Catatan Diedit Maestro"
+

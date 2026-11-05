@@ -1,0 +1,15 @@
+appId: com.example.dayforge
+---
+# Login flow with credentials
+- launchApp:
+    clearState: true
+
+- assertVisible: "Welcome Back"
+- runFlow:
+    file: subflows/login_subflow.yaml
+    env:
+      EMAIL: ${EMAIL:-"test@example.com"}
+      PASSWORD: ${PASSWORD:-"password123"}
+
+- assertVisible: "DayForge Dashboard"
+

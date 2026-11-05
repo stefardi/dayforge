@@ -58,38 +58,41 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                   ),
                 ),
                 const SizedBox(width: 12),
-                ElevatedButton(
-                  onPressed: isAdding
-                      ? null
-                      : () async {
-                          final txt = _titleCtrl.text.trim();
-                          if (txt.isEmpty) return;
-                          ref.read(_addLoadingProvider.notifier).set(true);
-                          try {
-                            await ref.read(taskProvider.notifier).add(txt);
-                            _titleCtrl.clear();
-                          } catch (e) {
-                            if (mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Gagal menambah entri: $e')),
-                              );
+                Tooltip(
+                  message: 'Tambah',
+                  child: ElevatedButton(
+                    onPressed: isAdding
+                        ? null
+                        : () async {
+                            final txt = _titleCtrl.text.trim();
+                            if (txt.isEmpty) return;
+                            ref.read(_addLoadingProvider.notifier).set(true);
+                            try {
+                              await ref.read(taskProvider.notifier).add(txt);
+                              _titleCtrl.clear();
+                            } catch (e) {
+                              if (mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Gagal menambah entri: $e')),
+                                );
+                              }
+                            } finally {
+                              if (mounted) {
+                                ref.read(_addLoadingProvider.notifier).set(false);
+                              }
                             }
-                          } finally {
-                            if (mounted) {
-                              ref.read(_addLoadingProvider.notifier).set(false);
-                            }
-                          }
-                        },
-                  child: isAdding
-                      ? const SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Icon(Icons.add),
+                          },
+                    child: isAdding
+                        ? const SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Icon(Icons.add),
+                  ),
                 ),
               ],
             ),

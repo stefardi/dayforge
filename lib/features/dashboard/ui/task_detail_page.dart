@@ -326,6 +326,7 @@ class _TaskDetailPageState extends ConsumerState<TaskDetailPage> {
         appBar: AppBar(
           title: const Text('Detail Entri'),
           leading: IconButton(
+            tooltip: 'Kembali',
             icon: const Icon(Icons.arrow_back),
             onPressed: () async {
               if (_hasChanges) {

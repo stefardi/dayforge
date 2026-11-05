@@ -1,0 +1,34 @@
+appId: com.example.dayforge
+---
+# Navigation & Validation Flow between Login and Register screens
+- launchApp:
+    clearState: true
+
+# 1. Assert Login screen is displayed
+- assertVisible: "Welcome Back"
+- assertVisible: "Email"
+- assertVisible: "Password"
+- assertVisible: "Login"
+
+# 2. Navigate to Register page
+- tapOn: "Don't have an account? Register"
+- assertVisible: "Create Account"
+- assertVisible: "Confirm Password"
+
+# 3. Test password mismatch validation
+- tapOn: "Email"
+- inputText: "testuser@example.com"
+- tapOn: "Password"
+- inputText: "pass1234"
+- tapOn: "Confirm Password"
+- inputText: "wrongpassword"
+- hideKeyboard
+- tapOn: "Register"
+
+# 4. Verify validation error snackbar appears
+- assertVisible: "Passwords do not match"
+
+# 5. Return to Login page
+- tapOn: "Already have an account? Login"
+- assertVisible: "Welcome Back"
+
