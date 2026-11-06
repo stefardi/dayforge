@@ -27,11 +27,11 @@ appId: com.example.dayforge
 - hideKeyboard
 - tapOn: "Tambah"
 - extendedWaitUntil:
-    visible: "Maestro E2E Task"
+    visible: "(?s).*Maestro E2E Task.*"
     timeout: 8000
 
 # 4. View and Edit Task Details
-- tapOn: "Maestro E2E Task"
+- tapOn: "(?s).*Maestro E2E Task.*"
 - assertVisible: "Detail Entri"
 
 - tapOn: "Tulis isi catatan di sini..."
@@ -50,9 +50,9 @@ appId: com.example.dayforge
     direction: LEFT
     duration: 1200
     element:
-      text: "Maestro E2E Task"
+      text: "(?s).*Maestro E2E Task.*"
 - extendedWaitUntil:
-    notVisible: "Maestro E2E Task"
+    notVisible: "(?s).*Maestro E2E Task.*"
     timeout: 5000
 
 # 6. Logout

@@ -22,15 +22,15 @@ appId: com.example.dayforge
 
 # 2. Wait for Supabase insert + list refresh before asserting
 - extendedWaitUntil:
-    visible: "Catatan Baru Maestro"
+    visible: "(?s).*Catatan Baru Maestro.*"
     timeout: 8000
 
 # 3. Tap on the task to open Task Detail
-- tapOn: "Catatan Baru Maestro"
+- tapOn: "(?s).*Catatan Baru Maestro.*"
 - assertVisible: "Detail Entri"
 
 # 4. Modify Title and Content
-- tapOn: "Catatan Baru Maestro"
+- tapOn: "(?s).*Catatan Baru Maestro.*"
 - eraseText: 30
 - inputText: "Catatan Diedit Maestro"
 
@@ -47,5 +47,5 @@ appId: com.example.dayforge
     visible: "DayForge Dashboard"
     timeout: 5000
 - extendedWaitUntil:
-    visible: "Catatan Diedit Maestro"
+    visible: "(?s).*Catatan Diedit Maestro.*"
     timeout: 5000

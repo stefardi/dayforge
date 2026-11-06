@@ -20,7 +20,7 @@ appId: com.example.dayforge
 - tapOn: "Tambah"
 # Wait for Supabase insert + list refresh
 - extendedWaitUntil:
-    visible: "Task To Delete Maestro"
+    visible: "(?s).*Task To Delete Maestro.*"
     timeout: 8000
 
 # 2. Press, hold, and drag left to delete the task (Dismissible direction: endToStart)
@@ -28,9 +28,9 @@ appId: com.example.dayforge
     direction: LEFT
     duration: 1200
     element:
-      text: "Task To Delete Maestro"
+      text: "(?s).*Task To Delete Maestro.*"
 
 # 3. Assert the task has been removed
 - extendedWaitUntil:
-    notVisible: "Task To Delete Maestro"
+    notVisible: "(?s).*Task To Delete Maestro.*"
     timeout: 5000
