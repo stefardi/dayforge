@@ -141,22 +141,31 @@ cd dayforge
 flutter pub get
 ```
 
-### 2. Configure Supabase
+### 2. Configure Environment Variables (.env)
 
-Edit [`lib/config/supabase_config.dart`](file:///home/ardi/dayforge/lib/config/supabase_config.dart) with your Supabase credentials:
+Duplicate the `.env.example` template into `.env` (which is gitignored and will never be pushed to version control):
 
-```dart
-class SupabaseConfig {
-  static const String url = 'YOUR_SUPABASE_PROJECT_URL';
-  static const String anonKey = 'YOUR_SUPABASE_ANON_KEY';
-}
+```bash
+cp .env.example .env
+```
+
+Open `.env` and fill in your Supabase credentials:
+
+```env
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_ANON_KEY=your-supabase-anon-key-here
 ```
 
 ### 3. Run the App
 
+Run the app with `--dart-define-from-file=.env`:
+
 ```bash
-flutter run
+flutter run --dart-define-from-file=.env
 ```
+
+> [!TIP]
+> If you are using **VS Code**, a launch configuration is already set up in `.vscode/launch.json`. You can simply press **F5** or click **Run > Start Debugging**.
 
 > [!NOTE]
 > Android requires **Core Library Desugaring** enabled for `flutter_local_notifications` (already configured in `android/app/build.gradle.kts` with `minSdk = 21` and `desugar_jdk_libs:2.1.4`).

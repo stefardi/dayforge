@@ -8,7 +8,19 @@ import 'package:dayforge/core/services/notification_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Supabase with environment variables (or fallback placeholders)
+  // Validate that Supabase credentials were provided
+  if (!SupabaseConfig.isConfigured) {
+    throw StateError(
+      '⚠️ Supabase credentials are missing!\n\n'
+      'Please run the application with:\n'
+      '  flutter run --dart-define-from-file=.env\n\n'
+      'Make sure you have created your local .env file:\n'
+      '  cp .env.example .env\n'
+      'and filled in your SUPABASE_URL and SUPABASE_ANON_KEY.\n',
+    );
+  }
+
+  // Initialize Supabase with environment variables
   await Supabase.initialize(
     url: SupabaseConfig.url,
     publishableKey: SupabaseConfig.anonKey,
