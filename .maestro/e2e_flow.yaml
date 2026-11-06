@@ -1,6 +1,7 @@
 appId: com.example.dayforge
 ---
 # Complete End-to-End User Journey Flow
+# Run with: maestro test .maestro/e2e_flow.yaml -e EMAIL=user@example.com -e PASSWORD=yourpass
 - launchApp:
     clearState: true
 
@@ -15,8 +16,8 @@ appId: com.example.dayforge
 - runFlow:
     file: subflows/login_subflow.yaml
     env:
-      EMAIL: ${EMAIL:-"test@example.com"}
-      PASSWORD: ${PASSWORD:-"password123"}
+      EMAIL: ${EMAIL}
+      PASSWORD: ${PASSWORD}
 
 - assertVisible: "DayForge Dashboard"
 
@@ -36,9 +37,6 @@ appId: com.example.dayforge
 - hideKeyboard
 
 - tapOn: "Simpan"
-- assertVisible:
-    text: "Entri berhasil disimpan"
-    optional: true
 
 - tapOn: "Kembali"
 - assertVisible: "DayForge Dashboard"
@@ -56,4 +54,3 @@ appId: com.example.dayforge
     file: subflows/logout_subflow.yaml
 
 - assertVisible: "Welcome Back"
-

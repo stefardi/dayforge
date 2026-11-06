@@ -2,7 +2,6 @@ appId: com.example.dayforge
 ---
 # Reusable subflow to log out from Dashboard
 - tapOn: "Logout"
-- assertVisible:
-    text: "Welcome Back"
+- extendedWaitUntil:
+    visible: "Welcome Back"
     timeout: 5000
-

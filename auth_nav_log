@@ -1,0 +1,21 @@
+Running on d0d58a6e
+ > Flow auth_navigation_flow
+Launch app "com.example.dayforge" with clear state... COMPLETED
+Assert that "Welcome Back" is visible... COMPLETED
+Assert that "Email" is visible... COMPLETED
+Assert that "Password" is visible... COMPLETED
+Assert that "Login" is visible... COMPLETED
+Tap on "Don't have an account? Register"... COMPLETED
+Assert that "Create Account" is visible... COMPLETED
+Assert that "Confirm Password" is visible... COMPLETED
+Tap on "Email"... COMPLETED
+Input text testuser@example.com... COMPLETED
+Tap on "Password"... COMPLETED
+Input text pass1234... COMPLETED
+Tap on "Confirm Password"... COMPLETED
+Input text wrongpassword... COMPLETED
+Hide Keyboard... COMPLETED
+Tap on "Register"... COMPLETED
+Assert that "Passwords do not match" is visible... COMPLETED
+Tap on "Already have an account? Login"... COMPLETED
+Assert that "Welcome Back" is visible... COMPLETED

@@ -8,6 +8,9 @@ appId: com.example.dayforge
     when:
       visible: "Welcome Back"
     file: subflows/login_subflow.yaml
+    env:
+      EMAIL: ${EMAIL}
+      PASSWORD: ${PASSWORD}
 
 - assertVisible: "DayForge Dashboard"
 
@@ -33,14 +36,10 @@ appId: com.example.dayforge
 - inputText: "Isi detail catatan yang diotomasi oleh Maestro."
 - hideKeyboard
 
-# 5. Save changes
+# 5. Save changes (via FAB or AppBar save icon)
 - tapOn: "Simpan"
-- assertVisible:
-    text: "Entri berhasil disimpan"
-    optional: true
 
 # 6. Navigate back to dashboard and verify updated title
 - tapOn: "Kembali"
 - assertVisible: "DayForge Dashboard"
 - assertVisible: "Catatan Diedit Maestro"
-

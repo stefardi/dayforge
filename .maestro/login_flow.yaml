@@ -1,6 +1,7 @@
 appId: com.example.dayforge
 ---
 # Login flow with credentials
+# Run with: maestro test .maestro/login_flow.yaml -e EMAIL=user@example.com -e PASSWORD=yourpass
 - launchApp:
     clearState: true
 
@@ -8,8 +9,7 @@ appId: com.example.dayforge
 - runFlow:
     file: subflows/login_subflow.yaml
     env:
-      EMAIL: ${EMAIL:-"test@example.com"}
-      PASSWORD: ${PASSWORD:-"password123"}
+      EMAIL: ${EMAIL}
+      PASSWORD: ${PASSWORD}
 
 - assertVisible: "DayForge Dashboard"
-
