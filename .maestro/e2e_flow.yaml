@@ -21,12 +21,14 @@ appId: com.example.dayforge
 
 - assertVisible: "DayForge Dashboard"
 
-# 3. Add Task
+# 3. Add Task — wait for Supabase to respond and list to refresh
 - tapOn: "Tambah entri..."
 - inputText: "Maestro E2E Task"
 - hideKeyboard
 - tapOn: "Tambah"
-- assertVisible: "Maestro E2E Task"
+- extendedWaitUntil:
+    visible: "Maestro E2E Task"
+    timeout: 8000
 
 # 4. View and Edit Task Details
 - tapOn: "Maestro E2E Task"
@@ -39,15 +41,19 @@ appId: com.example.dayforge
 - tapOn: "Simpan"
 
 - tapOn: "Kembali"
-- assertVisible: "DayForge Dashboard"
+- extendedWaitUntil:
+    visible: "DayForge Dashboard"
+    timeout: 5000
 
-# 5. Delete Task
+# 5. Delete Task — press, hold, and drag left to dismiss
 - swipe:
     direction: LEFT
+    duration: 1200
     element:
       text: "Maestro E2E Task"
-
-- assertNotVisible: "Maestro E2E Task"
+- extendedWaitUntil:
+    notVisible: "Maestro E2E Task"
+    timeout: 5000
 
 # 6. Logout
 - runFlow:

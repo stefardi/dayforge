@@ -20,8 +20,10 @@ appId: com.example.dayforge
 - hideKeyboard
 - tapOn: "Tambah"
 
-# 2. Verify the task appears in the list
-- assertVisible: "Catatan Baru Maestro"
+# 2. Wait for Supabase insert + list refresh before asserting
+- extendedWaitUntil:
+    visible: "Catatan Baru Maestro"
+    timeout: 8000
 
 # 3. Tap on the task to open Task Detail
 - tapOn: "Catatan Baru Maestro"
@@ -41,5 +43,9 @@ appId: com.example.dayforge
 
 # 6. Navigate back to dashboard and verify updated title
 - tapOn: "Kembali"
-- assertVisible: "DayForge Dashboard"
-- assertVisible: "Catatan Diedit Maestro"
+- extendedWaitUntil:
+    visible: "DayForge Dashboard"
+    timeout: 5000
+- extendedWaitUntil:
+    visible: "Catatan Diedit Maestro"
+    timeout: 5000

@@ -1,4 +1,4 @@
-[32m[ INFO][m Debug output path: /home/ardi/.maestro/tests/2026-11-06_141510
+[32m[ INFO][m Debug output path: /home/ardi/.maestro/tests/2026-11-06_143041
 [32m[ INFO][m ---- System Info ----
 [32m[ INFO][m Maestro Version: 2.12.1
 [32m[ INFO][m CI: Undefined
@@ -11,14 +11,14 @@
 [32m[ INFO][m Flutter Channel: stable
 [32m[ INFO][m ---------------------
 [36m[DEBUG][m Using SLF4J as the default logging framework
-[32m[ INFO][m [shard 1] Selected device d0d58a6e using port 36105 with execution plan ExecutionPlan(flowsToRun=[/home/ardi/dayforge/.maestro/login_flow.yaml], sequence=FlowSequence(flows=[], continueOnFailure=true), workspaceConfig=WorkspaceConfig(flows=null, includeTags=null, excludeTags=null, executionOrder=null, baselineBranch=null, notifications=null, disableRetries=false, platform=PlatformConfiguration(android=AndroidConfiguration(disableAnimations=false), ios=IOSConfiguration(disableAnimations=false, snapshotKeyHonorModalViews=null)), testOutputDir=null))
-[32m[ INFO][m Running flow login_flow.yaml...
+[32m[ INFO][m [shard 1] Selected device d0d58a6e using port 33361 with execution plan ExecutionPlan(flowsToRun=[/home/ardi/dayforge/.maestro/e2e_flow.yaml], sequence=FlowSequence(flows=[], continueOnFailure=true), workspaceConfig=WorkspaceConfig(flows=null, includeTags=null, excludeTags=null, executionOrder=null, baselineBranch=null, notifications=null, disableRetries=false, platform=PlatformConfiguration(android=AndroidConfiguration(disableAnimations=false), ios=IOSConfiguration(disableAnimations=false, snapshotKeyHonorModalViews=null)), testOutputDir=null))
+[32m[ INFO][m Running flow e2e_flow.yaml...
 Running on d0d58a6e
- > Flow login_flow
+ > Flow e2e_flow
 [32m[ INFO][m Getting device info
 [32m[ INFO][m Got device info: DeviceInfo(platform=ANDROID, widthPixels=1220, heightPixels=2712, widthGrid=1220, heightGrid=2712)
 [32m[ INFO][m Define variables RUNNING
-[32m[ INFO][m Define variables metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(defineVariablesCommand=DefineVariablesCommand(env={EMAIL=test@example.com, PASSWORD=password123, MAESTRO_FILENAME=login_flow, MAESTRO_DEVICE_UDID=d0d58a6e, MAESTRO_SHARD_ID=1, MAESTRO_SHARD_INDEX=0}, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Define variables metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(defineVariablesCommand=DefineVariablesCommand(env={EMAIL=test@example.com, PASSWORD=password123, MAESTRO_FILENAME=e2e_flow, MAESTRO_DEVICE_UDID=d0d58a6e, MAESTRO_SHARD_ID=1, MAESTRO_SHARD_INDEX=0}, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
 [32m[ INFO][m Define variables COMPLETED
 [32m[ INFO][m Apply configuration RUNNING
 [32m[ INFO][m Apply configuration metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(applyConfigurationCommand=ApplyConfigurationCommand(config=MaestroConfig(appId=com.example.dayforge, name=null, tags=[], ext={}, onFlowStart=null, onFlowComplete=null, properties={}), label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
@@ -29,6 +29,30 @@ Launch app "com.example.dayforge" with clear state...[32m[ INFO][m Launch app 
 [32m[ INFO][m Launching app com.example.dayforge
 [32m[ INFO][m Stopping com.example.dayforge app during launch
 [32m[ INFO][m Launch app "com.example.dayforge" with clear state COMPLETED
+ COMPLETED
+[32m[ INFO][m Assert that "Welcome Back" is visible RUNNING
+Assert that "Welcome Back" is visible...[32m[ INFO][m Assert that "Welcome Back" is visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=ElementSelector(textRegex=Welcome Back, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), notVisible=null, scriptCondition=null, label=null), timeout=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Assert that "Welcome Back" is visible COMPLETED
+ COMPLETED
+[32m[ INFO][m Tap on "Don't have an account? Register" RUNNING
+Tap on "Don't have an account? Register"...[32m[ INFO][m Tap on "Don't have an account? Register" metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(tapOnElementCommand=TapOnElementCommand(selector=ElementSelector(textRegex=Don't have an account? Register, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), retryIfNoChange=false, waitUntilVisible=false, longPress=false, repeat=null, waitToSettleTimeoutMs=null, relativePoint=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Tapping on element:  UiElement(treeNode=TreeNode(attributes={text=, accessibilityText=Don't have an account? Register, hintText=, ignoreBoundsFiltering=false, resource-id=, clickable=true, bounds=[248,1861][972,2005], enabled=true, focused=false, checked=false, scrollable=false, selected=false, class=android.widget.Button, important-for-accessibility=true, error=}, children=[], clickable=true, enabled=true, focused=false, checked=false, selected=false), bounds=Bounds(x=248, y=1861, width=724, height=144))
+[32m[ INFO][m Tap aimed via settled hierarchy
+[32m[ INFO][m Tapping at (610, 1933) using hierarchy based logic for wait
+[32m[ INFO][m Something has changed in the UI judging by view hierarchy. Proceed.
+[32m[ INFO][m Tap on "Don't have an account? Register" COMPLETED
+ COMPLETED
+[32m[ INFO][m Assert that "Create Account" is visible RUNNING
+Assert that "Create Account" is visible...[32m[ INFO][m Assert that "Create Account" is visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=ElementSelector(textRegex=Create Account, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), notVisible=null, scriptCondition=null, label=null), timeout=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Assert that "Create Account" is visible COMPLETED
+ COMPLETED
+[32m[ INFO][m Tap on "Already have an account? Login" RUNNING
+Tap on "Already have an account? Login"...[32m[ INFO][m Tap on "Already have an account? Login" metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(tapOnElementCommand=TapOnElementCommand(selector=ElementSelector(textRegex=Already have an account? Login, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), retryIfNoChange=false, waitUntilVisible=false, longPress=false, repeat=null, waitToSettleTimeoutMs=null, relativePoint=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Tapping on element:  UiElement(treeNode=TreeNode(attributes={text=, accessibilityText=Already have an account? Login, hintText=, ignoreBoundsFiltering=false, resource-id=, clickable=true, bounds=[253,1969][967,2113], enabled=true, focused=false, checked=false, scrollable=false, selected=false, class=android.widget.Button, important-for-accessibility=true, error=}, children=[], clickable=true, enabled=true, focused=false, checked=false, selected=false), bounds=Bounds(x=253, y=1969, width=714, height=144))
+[32m[ INFO][m Tap aimed via settled hierarchy
+[32m[ INFO][m Tapping at (610, 2041) using hierarchy based logic for wait
+[32m[ INFO][m Something has changed in the UI judging by view hierarchy. Proceed.
+[32m[ INFO][m Tap on "Already have an account? Login" COMPLETED
  COMPLETED
 [32m[ INFO][m Assert that "Welcome Back" is visible RUNNING
 Assert that "Welcome Back" is visible...[32m[ INFO][m Assert that "Welcome Back" is visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=ElementSelector(textRegex=Welcome Back, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), notVisible=null, scriptCondition=null, label=null), timeout=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
@@ -92,4 +116,59 @@ Run subflows/login_subflow.yaml... COMPLETED
 Assert that "DayForge Dashboard" is visible...[32m[ INFO][m Assert that "DayForge Dashboard" is visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=ElementSelector(textRegex=DayForge Dashboard, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), notVisible=null, scriptCondition=null, label=null), timeout=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
 [32m[ INFO][m Assert that "DayForge Dashboard" is visible COMPLETED
  COMPLETED
+[32m[ INFO][m Tap on "Tambah entri..." RUNNING
+Tap on "Tambah entri..."...[32m[ INFO][m Tap on "Tambah entri..." metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(tapOnElementCommand=TapOnElementCommand(selector=ElementSelector(textRegex=Tambah entri..., idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), retryIfNoChange=false, waitUntilVisible=false, longPress=false, repeat=null, waitToSettleTimeoutMs=null, relativePoint=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Tapping on element:  UiElement(treeNode=TreeNode(attributes={text=, accessibilityText=, hintText=Tambah entri..., ignoreBoundsFiltering=false, resource-id=, clickable=true, bounds=[48,338][938,506], enabled=true, focused=false, checked=false, scrollable=false, selected=false, class=android.widget.EditText, important-for-accessibility=true, error=}, children=[], clickable=true, enabled=true, focused=false, checked=false, selected=false), bounds=Bounds(x=48, y=338, width=890, height=168))
+[32m[ INFO][m Tap aimed via settled hierarchy
+[32m[ INFO][m Tapping at (493, 422) using hierarchy based logic for wait
+[32m[ INFO][m Something has changed in the UI judging by view hierarchy. Proceed.
+[32m[ INFO][m Tap on "Tambah entri..." COMPLETED
+ COMPLETED
+[32m[ INFO][m Input text Maestro E2E Task RUNNING
+Input text Maestro E2E Task...[32m[ INFO][m Input text Maestro E2E Task metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(inputTextCommand=InputTextCommand(text=Maestro E2E Task, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Inputting text: Maestro E2E Task
+[32m[ INFO][m Input text Maestro E2E Task COMPLETED
+ COMPLETED
+[32m[ INFO][m Hide Keyboard RUNNING
+Hide Keyboard...[32m[ INFO][m Hide Keyboard metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(hideKeyboardCommand=HideKeyboardCommand()), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Hiding Keyboard
+[32m[ INFO][m Hide Keyboard COMPLETED
+ COMPLETED
+[32m[ INFO][m Tap on "Tambah" RUNNING
+Tap on "Tambah"...[32m[ INFO][m Tap on "Tambah" metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(tapOnElementCommand=TapOnElementCommand(selector=ElementSelector(textRegex=Tambah, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), retryIfNoChange=false, waitUntilVisible=false, longPress=false, repeat=null, waitToSettleTimeoutMs=null, relativePoint=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[32m[ INFO][m Tapping on element:  UiElement(treeNode=TreeNode(attributes={text=, accessibilityText=Tambah, hintText=, ignoreBoundsFiltering=false, resource-id=, clickable=false, bounds=[974,350][1172,494], enabled=true, focused=false, checked=false, scrollable=false, selected=false, class=android.view.View, important-for-accessibility=false, error=}, children=[TreeNode(attributes={text=, accessibilityText=, hintText=, ignoreBoundsFiltering=false, resource-id=, clickable=true, bounds=[974,350][1172,494], enabled=true, focused=false, checked=false, scrollable=false, selected=false, class=android.widget.Button, important-for-accessibility=true, error=}, children=[], clickable=true, enabled=true, focused=false, checked=false, selected=false)], clickable=false, enabled=true, focused=false, checked=false, selected=false), bounds=Bounds(x=974, y=350, width=198, height=144))
+[32m[ INFO][m Tap aimed via settled hierarchy
+[32m[ INFO][m Tapping at (1073, 422) using hierarchy based logic for wait
+[32m[ INFO][m Something has changed in the UI judging by view hierarchy. Proceed.
+[32m[ INFO][m Tap on "Tambah" COMPLETED
+ COMPLETED
+[32m[ INFO][m Assert that "Maestro E2E Task" is visible RUNNING
+Assert that "Maestro E2E Task" is visible...[32m[ INFO][m Assert that "Maestro E2E Task" is visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=ElementSelector(textRegex=Maestro E2E Task, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), notVisible=null, scriptCondition=null, label=null), timeout=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+[1;31m[ERROR][m [Command execution] CommandFailed: Assertion is false: "Maestro E2E Task" is visible
+[32m[ INFO][m Taking screenshot
+[30m[TRACE][m Taking screenshot to output sink
+[32m[ INFO][m Assert that "Maestro E2E Task" is visible FAILED
+ FAILED
+
+Assertion is false: "Maestro E2E Task" is visible
+
+Assertion '"Maestro E2E Task" is visible' failed. Check the UI hierarchy in debug artifacts to verify the element state and properties.
+
+Possible causes:
+- Element selector may be incorrect - check if there are similar elements with slightly different names/properties.
+- Element may be temporarily unavailable due to loading state
+- This could be a real regression that needs to be addressed
+
+==== Debug output (logs & screenshots) ====
+
+/home/ardi/.maestro/tests/2026-11-06_143041
 [32m[ INFO][m Performing purge of logs older than 14 days from /home/ardi/.maestro/tests
+╭────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                │
+│   Debug tests faster by easy access to test recordings, maestro logs, screenshots, and more.   │
+│                                                                                                │
+│   Run your flows on Maestro Cloud:                                                             │
+│   maestro cloud app_file flows_folder/                                                         │
+│                                                                                                │
+╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+
