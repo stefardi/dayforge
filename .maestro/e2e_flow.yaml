@@ -44,16 +44,29 @@ appId: com.example.dayforge
 - extendedWaitUntil:
     visible: "DayForge Dashboard"
     timeout: 5000
+- hideKeyboard
 
 # 5. Delete Task — press, hold, and drag left to dismiss
+# - extendedWaitUntil:
+#     visible: "(?s).*Maestro E2E Task.*"
+#     timeout: 8000
+# - swipe:
+#     direction: LEFT
+#     duration: 1200
+#     element:
+#       text: "(?s).*Maestro E2E Task.*"
+# - extendedWaitUntil:
+#     notVisible: "(?s).*Maestro E2E Task.*"
+#     timeout: 5000
+- waitForAnimationToEnd
 - swipe:
-    direction: LEFT
-    duration: 1200
-    element:
+    from:
       text: "(?s).*Maestro E2E Task.*"
+    direction: LEFT
+    duration: 600
 - extendedWaitUntil:
     notVisible: "(?s).*Maestro E2E Task.*"
-    timeout: 5000
+    timeout: 8000
 
 # 6. Logout
 - runFlow:

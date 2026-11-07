@@ -24,11 +24,15 @@ appId: com.example.dayforge
     timeout: 8000
 
 # 2. Press, hold, and drag left to delete the task (Dismissible direction: endToStart)
+- waitForAnimationToEnd
 - swipe:
-    direction: LEFT
-    duration: 1200
-    element:
+    from:
       text: "(?s).*Task To Delete Maestro.*"
+    direction: LEFT
+    duration: 600
+- extendedWaitUntil:
+    notVisible: "(?s).*Task To Delete Maestro.*"
+    timeout: 8000
 
 # 3. Assert the task has been removed
 - extendedWaitUntil:
