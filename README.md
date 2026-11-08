@@ -1,3 +1,5 @@
+FYI : this project is just for me to studying flutter, don't expect to much
+
 # ⚡ DayForge
 
 A modern, cloud-synced daily journaling and task management mobile application built with **Flutter**, **Supabase**, and **Riverpod**.
